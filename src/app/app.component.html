@@ -1,11 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
+<nav class="navbar navbar-fixed navbar-inverse" role="navigation">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li><a href="#" routerLink="/product" title="product" >Product</a></li>
+      <li><a href="#" routerLink="/settings" title="settings" >Settings</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="container">
-  <stt-settings></stt-settings>
-  <stt-product-detail></stt-product-detail>
+  <router-outlet></router-outlet>
+  <!-- <stt-settings></stt-settings>
+  <stt-product-detail></stt-product-detail> -->
 </div>
 

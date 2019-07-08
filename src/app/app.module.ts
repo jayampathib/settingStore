@@ -4,17 +4,19 @@ import { FormsModule } from '@angular/forms';
  
 import { AppComponent } from './app.component';
 import { ProductDetailComponent } from './product/product-detail.component';
-import { SettingsComponent } from './settings/settings.component';
-
+import { AppRoutingModule } from 'src/app/app-routing/app-routing.module';
+import { SettingsComponent } from 'src/app/Settings/settings.component';
+ 
 @NgModule({
   declarations: [
     AppComponent,
     ProductDetailComponent,
-    SettingsComponent
+    SettingsComponent 
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
