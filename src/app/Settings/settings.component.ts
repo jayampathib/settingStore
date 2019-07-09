@@ -20,7 +20,7 @@ export class SettingsComponent implements OnInit {
   }
 
   saveSettings(){
-
+    this.appSettingsService.saveSettings(this.appSettings);
   }
   cancel(){
 

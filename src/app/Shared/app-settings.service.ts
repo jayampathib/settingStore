@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { AppSettings } from './app-settings';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { SETTING_LOCATION } from 'src/app/Shared/app-constant';
+import { catchError, tap } from 'rxjs/operators';
+import { SETTING_LOCATION, SETTING_KEY } from 'src/app/Shared/app-constant';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +30,29 @@ export class AppSettingsService {
 
   }
  
-  getSettings():  Observable<AppSettings>{    
-    return this.http.get<AppSettings>(SETTING_LOCATION) 
-    .pipe(
-      catchError(this.handleError('getSettings', new AppSettings()))
-    );
-       
-     
+  getSettings():  Observable<AppSettings>{   
+    let settings = localStorage.getItem(SETTING_KEY);
+    if(settings){
+        return of(JSON.parse(settings));
+    }
+    else{
+      return this.http.get<AppSettings>(SETTING_LOCATION) 
+      .pipe(
+        tap(settings => {
+            if(settings){
+              this.saveSettings(settings)
+            }
+          }
+        ),
+        catchError(
+          this.handleError('getSettings', new AppSettings())
+        )
+      );
+    } 
+  }
+
+  saveSettings(settings :AppSettings):void {
+    localStorage.setItem(SETTING_KEY,JSON.stringify(settings));
   }
 
   // getSettings():  Observable<AppSettings>{
