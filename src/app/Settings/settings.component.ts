@@ -22,6 +22,9 @@ export class SettingsComponent implements OnInit {
   saveSettings(){
     this.appSettingsService.saveSettings(this.appSettings);
   }
+  deleteSettings() {
+    this.appSettingsService.deleteSettings();
+  }
   cancel(){
 
   }

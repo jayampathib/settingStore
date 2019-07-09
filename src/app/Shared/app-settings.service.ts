@@ -52,7 +52,11 @@ export class AppSettingsService {
   }
 
   saveSettings(settings :AppSettings):void {
-    localStorage.setItem(SETTING_KEY,JSON.stringify(settings));
+    localStorage.setItem(SETTING_KEY, JSON.stringify(settings));
+  }
+
+  deleteSettings() :void{
+    localStorage.removeItem(SETTING_KEY);
   }
 
   // getSettings():  Observable<AppSettings>{
